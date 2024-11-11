@@ -1,27 +1,31 @@
+function toggleMenu() {
+    const navMenu = document.getElementById("nav-menu");
+    navMenu.classList.toggle("show");
+}
+
 document.addEventListener("DOMContentLoaded", function() {
-    // Select all navigation links
+    // Smooth scrolling and active link logic can remain the same
     const navLinks = document.querySelectorAll("header nav a");
 
-    // Add event listener for each link
     navLinks.forEach(link => {
         link.addEventListener("click", (event) => {
             event.preventDefault();
-            // Scroll to the section smoothly
             const targetSection = document.querySelector(link.getAttribute("href"));
             targetSection.scrollIntoView({ behavior: "smooth" });
+
+            // Hide the mobile menu after clicking a link
+            if (window.innerWidth <= 768) {
+                document.getElementById("nav-menu").classList.remove("show");
+            }
         });
     });
 
-    // Highlight the active link based on scroll position
     window.addEventListener("scroll", () => {
-        let scrollPosition = window.scrollY + 70; // Adjusted for header height
-
+        let scrollPosition = window.scrollY + 70;
         navLinks.forEach(link => {
             let section = document.querySelector(link.getAttribute("href"));
-            if (
-                section.offsetTop <= scrollPosition &&
-                section.offsetTop + section.offsetHeight > scrollPosition
-            ) {
+            if (section.offsetTop <= scrollPosition &&
+                section.offsetTop + section.offsetHeight > scrollPosition) {
                 navLinks.forEach(link => link.classList.remove("active"));
                 link.classList.add("active");
             }

@@ -18,9 +18,18 @@ header {
     width: 100%;
     background-color: #0073e6;
     color: white;
-    text-align: center;
-    padding: 1em 0;
     z-index: 1000;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1em 2em;
+}
+
+.logo {
+    font-size: 1.5em;
 }
 
 header nav {
@@ -38,6 +47,22 @@ header nav a {
     border: 2px solid transparent;
     border-radius: 5px;
     transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Hamburger menu styling */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger span {
+    height: 3px;
+    width: 25px;
+    background: white;
+    margin: 4px;
+    border-radius: 3px;
+    transition: 0.3s;
 }
 
 /* Separated navigation items with active styling */
@@ -68,45 +93,26 @@ main {
     text-align: center;
 }
 
-#home { background-color: #e0f7fa; }
-#about { background-color: #fff3e0; }
-#publications { background-color: #fce4ec; }
-#contact { background-color: #e8f5e9; }
-
-/* Form styling in Contact section */
-form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 500px;
-}
-
-form label, form input, form textarea, form button {
-    margin-bottom: 10px;
-}
-
-form button {
-    padding: 10px;
-    background-color: #0073e6;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-form button:hover {
-    background-color: #005bb5;
-}
-
-/* Responsive Design: Adjustments for Mobile Devices */
+/* Mobile-specific styles */
 @media (max-width: 768px) {
     header nav {
+        display: none; /* Hide nav on mobile by default */
         flex-direction: column;
         gap: 10px;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #0073e6;
+        padding: 10px 0;
     }
-    
-    header nav a {
-        padding: 8px 16px;
-        font-size: 16px;
+
+    header nav.show {
+        display: flex; /* Show nav when the menu is toggled */
+    }
+
+    .hamburger {
+        display: flex; /* Show hamburger icon on mobile */
     }
 
     .section {
